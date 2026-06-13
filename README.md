@@ -26,35 +26,6 @@ sio-omb-event/
 
 There is no build step, no framework, and no dependencies to install. Each page is a single self-contained file. Fonts load from Google Fonts; everything else (including the Scripps Pier logo on the event page and the capacity figure on the briefing and op-ed) is embedded directly in the HTML, so the three files above are the entire site.
 
-## Editing
-
-Open the file and edit the HTML directly. Keep these standing rules:
-
-- **No em-dashes or en-dashes.** Use commas, colons, or semicolons.
-- **Never the word "foster."**
-- Active voice, sentence case, plain verbs. Warm and inviting, but measured, not alarmist.
-- **Public-safe:** no phone numbers or email addresses on any page. The only contact path is names plus "reach out to Helen, Nan, or Steve," and "contact Helen to join the Signal group."
-- The shared Drive link and Steve's notes doc are intentionally public; keep them.
-
-The live deadline counter on the event page is the only dynamic element. It counts down to `new Date(2026, 6, 13 ...)` in the `<script>` at the bottom of `index.html`. If the comment window is extended, change that date and the two "by July 13" label strings.
-
-## Verify before publishing
-
-Quick checks from the repo root:
-
-```bash
-# no em or en dashes anywhere
-grep -rc $'\u2014\|\u2013' *.html
-
-# no "foster"
-grep -ric foster *.html
-
-# tab links resolve to real files
-grep -o 'href="[a-z]*\.html"' *.html | sort -u
-```
-
-All three HTML files should report 0 dashes and 0 "foster," and every tab link should point to `index.html`, `briefing.html`, or `oped.html`.
-
 ## Hosting (GitHub Pages)
 
 See the step-by-step in the handoff notes. In short: put these four files in the root of the `sio-omb-event` repository on the `main` branch, enable GitHub Pages from `main` / `/ (root)`, and the site serves at https://sdiggs.github.io/sio-omb-event/. The tab links are relative, so the three-tab navigation works the same locally and on Pages.
